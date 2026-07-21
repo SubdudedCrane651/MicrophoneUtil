@@ -12,10 +12,20 @@ public partial class MainPage : ContentPage
         _microphoneUtil = microphoneUtil;
     }
 
-    private void OnStartClicked(object sender, EventArgs e)
+    private async void OnStartClicked(object sender, EventArgs e)
     {
+#if ANDROID
+        var status = await Permissions.RequestAsync<Permissions.Microphone>();
+        if (status != PermissionStatus.Granted)
+        {
+            await DisplayAlert("Error", "Microphone permission denied.", "OK");
+            return;
+        }
+#endif
+
         _microphoneUtil.Start();
     }
+
 
     private void OnStopClicked(object sender, EventArgs e)
     {

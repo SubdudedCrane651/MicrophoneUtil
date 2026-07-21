@@ -1,6 +1,5 @@
 ﻿using Android.App;
 using Android.Content;
-using Android.Content.PM;
 using Android.Media;
 using Android.OS;
 using System.Threading.Tasks;
@@ -18,6 +17,7 @@ public class MicrophoneUtilService : Service
     public override void OnCreate()
     {
         base.OnCreate();
+
         StartForeground(1, BuildNotification());
         StartMicrophone();
     }
@@ -34,7 +34,6 @@ public class MicrophoneUtilService : Service
         var manager = (NotificationManager)GetSystemService(NotificationService);
         manager.CreateNotificationChannel(channel);
 
-        // Change Android.Resource.Drawable.ic_mic to Resource.Drawable.IcMic
         return new Notification.Builder(this, channelId)
             .SetContentTitle("MicrophoneUtil")
             .SetContentText("Using microphone in the background…")
@@ -44,14 +43,15 @@ public class MicrophoneUtilService : Service
 
     private void StartMicrophone()
     {
-        int sampleRate = 16000;
+        int sampleRate = 44100;
+
         int bufferSize = AudioRecord.GetMinBufferSize(
             sampleRate,
             ChannelIn.Mono,
             Encoding.Pcm16bit);
 
         _audioRecord = new AudioRecord(
-            AudioSource.VoiceRecognition,
+            AudioSource.Mic,
             sampleRate,
             ChannelIn.Mono,
             Encoding.Pcm16bit,
@@ -70,16 +70,7 @@ public class MicrophoneUtilService : Service
 
                 if (read > 0)
                 {
-                    // Example amplitude calculation
-                    int sum = 0;
-                    for (int i = 0; i < read; i += 2)
-                    {
-                        short sample = (short)((buffer[i + 1] << 8) | buffer[i]);
-                        sum += Math.Abs(sample);
-                    }
-                    int amplitude = sum / (read / 2);
-
-                    // TODO: send amplitude to MAUI
+                    // optional amplitude calc
                 }
             }
         });

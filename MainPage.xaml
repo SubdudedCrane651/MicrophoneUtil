@@ -21,8 +21,7 @@
 
         <Button Text="Stop Microphone"
                 BackgroundColor="#F44336"
-                TextColor="White"
-                Clicked="OnStopClicked" />
+                TextColor="White" />
 
     </VerticalStackLayout>
 </ContentPage>

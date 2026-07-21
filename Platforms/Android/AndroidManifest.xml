@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 	<application android:allowBackup="true" android:icon="@mipmap/appicon" android:roundIcon="@mipmap/appicon_round" android:supportsRtl="true">
-
- <!-- Your Foreground Service (NO microphone type!) -->
-        <service
-            android:name=".Platforms.Android.Services.MicrophoneUtilService"
-            android:exported="true" />
+ 
 </application>
-    <!-- REQUIRED FOR MICROPHONE FOREGROUND SERVICE ON ANDROID 14/15 -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
-    
+    <!-- Microphone permission -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <!-- Notifications (optional but recommended for mic apps) -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Wake lock (optional, prevents CPU sleep during recording) -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- DO NOT include FOREGROUND_SERVICE or FOREGROUND_SERVICE_MICROPHONE -->
+    <!-- These cause crashes on Android 15 unless you are a system app -->
 </manifest>

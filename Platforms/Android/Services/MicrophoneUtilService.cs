@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MicrophoneUtil.Platforms.Android.Services;
 
-[Service(ForegroundServiceType = ForegroundService.TypeMicrophone, Exported = true)]
+[Service(Exported = true)]
 public class MicrophoneUtilService : Service
 {
     private AudioRecord? _audioRecord;

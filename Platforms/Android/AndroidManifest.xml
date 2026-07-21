@@ -7,6 +7,9 @@
             android:name=".Platforms.Android.Services.MicrophoneUtilService"
             android:exported="true" />
 </application>
+    <!-- REQUIRED FOR MICROPHONE FOREGROUND SERVICE ON ANDROID 14/15 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />

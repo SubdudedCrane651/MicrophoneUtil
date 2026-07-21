@@ -1,0 +1,29 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MicrophoneUtil.MainPage"
+             Title="MicrophoneUtil">
+
+    <VerticalStackLayout Padding="30" Spacing="20">
+
+        <Label Text="MicrophoneUtil"
+               FontSize="28"
+               HorizontalOptions="Center" />
+
+        <Label Text="Use the microphone in the background, even while music is playing."
+               FontSize="14"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center" />
+
+        <Button Text="Start Microphone"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                Clicked="OnStartClicked" />
+
+        <Button Text="Stop Microphone"
+                BackgroundColor="#F44336"
+                TextColor="White"
+                Clicked="OnStopClicked" />
+
+    </VerticalStackLayout>
+</ContentPage>
+

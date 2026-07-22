@@ -51,9 +51,6 @@ public partial class MainPage : ContentPage
     {
         base.OnAppearing();
 
-        string serverIp = "66.130.0.235";
-        int port = 5002;
-
         waveform = new WaveformDrawable();
         WaveformView.Drawable = waveform;
     }

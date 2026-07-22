@@ -21,7 +21,8 @@
 
         <Button Text="Stop Microphone"
                 BackgroundColor="#F44336"
-                TextColor="White"/>
+                TextColor="White"
+                Clicked="OnStopClicked"/>
 
         <GraphicsView x:Name="WaveformView"
           HeightRequest="100"

@@ -16,24 +16,15 @@ public partial class MainPage : ContentPage
     public MainPage()
     {
         InitializeComponent();
+        DeviceDisplay.KeepScreenOn = true;
     }
-
-    private async void OnStartClicked(object sender, EventArgs e)
-    {
-        StartMicrophone();
-    }
-    protected override void OnDisappearing()
-    {
-        StopMicrophone();
-        base.OnDisappearing();
-    }
-
-    private void StartMicrophone()
+    private void OnStartClicked(object sender, EventArgs e)
     {
 #if ANDROID
-        loopback = new LocalMicLoopback();
+        if (AudioGlobals.Loopback == null)
+            AudioGlobals.Loopback = new LocalMicLoopback();
 
-        loopback.OnSamples += (samples) =>
+        AudioGlobals.Loopback.OnSamples += (samples) =>
         {
             waveform.Samples = samples.Select(s => s / 32768f).ToList();
 
@@ -43,7 +34,7 @@ public partial class MainPage : ContentPage
             });
         };
 
-        loopback.Start();
+        AudioGlobals.Loopback.Start();
 #endif
     }
 
@@ -55,11 +46,10 @@ public partial class MainPage : ContentPage
         WaveformView.Drawable = waveform;
     }
 
-    private void StopMicrophone()
+    private void OnStopClicked(object sender, EventArgs e)
     {
-        _isRunning = false;
-        _audioRecord?.Stop();
-        _audioRecord?.Release();
-        _audioRecord = null;
+#if ANDROID
+        AudioGlobals.Loopback?.Stop();
+#endif
     }
 }

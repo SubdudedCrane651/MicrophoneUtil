@@ -21,7 +21,11 @@
 
         <Button Text="Stop Microphone"
                 BackgroundColor="#F44336"
-                TextColor="White" />
+                TextColor="White"/>
+
+        <GraphicsView x:Name="WaveformView"
+          HeightRequest="100"
+          Drawable="{Binding WaveformDrawable}" />
 
     </VerticalStackLayout>
 </ContentPage>
